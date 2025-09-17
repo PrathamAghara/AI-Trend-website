@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Prompts - AI Trends Hub</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #0d6efd, #6610f2, #00d4ff);
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+        .hero h1 {
+            position: relative;
+            z-index: 1;
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+        .typing-text::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .hero-btn {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .hero-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .section-title {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .card {
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+        .cursor-pointer {
+            cursor: pointer;
+        }
+        .prompt-image-gallery {
+            scroll-behavior: smooth;
+            gap: 1rem;
+        }
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-bottom: 0.5rem;
+        }
+        .copy-btn {
+            border-radius: 20px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.85rem;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="aitools.html">AI Trends Hub</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="aitools.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Trends.html">Trends</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="category.html">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Tools.html">Tools</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="Promts.html">Prompts</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <canvas id="particleCanvas" class="hero-canvas"></canvas>
+    <div class="container position-relative">
+        <h1 class="display-4"><span class="typing-text">AI Prompts</span></h1>
+        <p class="lead">Find and use AI prompts tailored for various applications and tools.</p>
+    </div>
+</section>
+
+<!-- Prompts Section -->
+<section id="prompts" class="py-5">
+    <div class="container">
+        <h2 class="section-title">AI Prompts Library</h2>
+        <p class="text-center mb-4">Filter prompts by category or search to find the perfect AI prompt for your needs.</p>
+        <div class="row justify-content-center mb-4">
+            <div class="col-md-12">
+                <div class="d-flex flex-wrap justify-content-center mb-3" id="category-filter">
+                    <button class="btn btn-outline-primary category-btn" data-category="all">All</button>
+                    <button class="btn btn-outline-primary category-btn" data-category="Image Generator">Image Generator</button>
+                    <button class="btn btn-outline-primary category-btn" data-category="Music Generators">Music Generators</button>
+                    <button class="btn btn-outline-primary category-btn" data-category="Content Writing">Content Writing</button>
+                    <button class="btn btn-outline-primary category-btn" data-category="Video Creation">Video Creation</button>
+                    <button class="btn btn-outline-primary category-btn" data-category="Language Translation">Language Translation</button>
+                </div>
+                <input type="text" id="prompt-search" class="form-control" placeholder="Search prompts...">
+            </div>
+        </div>
+        <ul id="prompts-list" class="list-group">
+            <!-- Prompts will be populated here via JS -->
+        </ul>
+    </div>
+</section>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Prompt Image</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" alt="Enlarged Prompt Image" class="img-fluid rounded-3" style="max-height: 60vh; width: auto;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 AI Trends Hub. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+<!-- Custom JavaScript (Typing + Particles + Prompts) -->
+<script>
+    // Typing Animation
+    const texts = ["AI Prompts", "Explore AI", "Enhance Workflows"];
+    let index = 0, charIndex = 0, isDeleting = false;
+    const typingElement = document.querySelector(".typing-text");
+    function type() {
+        const currentText = texts[index];
+        if (isDeleting) {
+            typingElement.textContent = currentText.substring(0, charIndex--);
+            if (charIndex < 0) {
+                isDeleting = false;
+                index = (index + 1) % texts.length;
+            }
+        } else {
+            typingElement.textContent = currentText.substring(0, charIndex++);
+            if (charIndex > currentText.length) {
+                isDeleting = true;
+                setTimeout(type, 1000);
+                return;
+            }
+        }
+        setTimeout(type, isDeleting ? 50 : 100);
+    }
+    document.addEventListener("DOMContentLoaded", type);
+
+    // Particle Background
+    const canvas = document.getElementById("particleCanvas");
+    const ctx = canvas.getContext("2d");
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = canvas.parentElement.offsetHeight || 360;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+    const particles = [];
+    for (let i = 0; i < 50; i++) {
+        particles.push({
+            x: Math.random() * canvas.width,
+            y: Math.random() * canvas.height,
+            radius: Math.random() * 3 + 1,
+            vx: Math.random() * 2 - 1,
+            vy: Math.random() * 2 - 1
+        });
+    }
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+            ctx.fill();
+        });
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // Prompts Data
+    const prompts = [
+        {
+            title: "Collectible Figurine (Nano Banana)",
+            text: "Create a 1/6 scale commercial figurine of the person in the photo with a clear acrylic base and branded box packaging — studio lighting, photorealistic, product shot.",
+            category: "Image Generator",
+            // images: [
+            //     { src: "./img.png", alt: "Nano Banana Figurine Example 1" },
+            //     { src: "./img_2.png", alt: "Nano Banana Figurine Example 2" },
+            //     { src: "./img_3.png", alt: "Nano Banana Figurine Example 3" },
+            //     { src: "./img_1.png", alt: "Nano Banana Figurine Example 4" }
+            // ]
+        },
+        {
+            title: "1/7 Scale Figurine on Desk (Nano Banana)",
+            text: "Create a 1/7 scale commercialized figurine of the character in the photo, realistic style, on a computer desk, with a round transparent acrylic base and no text. Next to it, add a toy packaging box printed with original artwork.",
+            category: "Image Generator"
+        },
+        {
+            title: "Cute Plush Toy (Nano Banana)",
+            text: "Make a cute plush toy version of the character, oversized head, simple clothes, fuzzy fabric, against a plain backdrop with soft lighting.",
+            category: "Image Generator"
+        },
+        {
+            title: "Anime Figurine (Nano Banana)",
+            text: "Turn the photo into an anime figurine on a clear acrylic base, vibrant pose, with a manga-style background and neon lighting.",
+            category: "Image Generator"
+        },
+        {
+            title: "Superhero Action Figure (Nano Banana)",
+            text: "Make a superhero action figure, dynamic stance, with a cape and comic book packaging beside the figurine.",
+            category: "Image Generator"
+        },
+        {
+            title: "3D Game Character (Nano Banana)",
+            text: "Transform the image into a 3D game character, standing on a platform in a pixelated environment with video game props.",
+            category: "Image Generator"
+        },
+        {
+            title: "Photorealistic Animal Figurine (Nano Banana)",
+            text: "Render a photorealistic animal figurine, sitting on a shelf with tiny accessories like a food bowl or toys, in miniature sizing and bright colors.",
+            category: "Image Generator"
+        },
+        {
+            title: "Astronaut Collectible (Nano Banana)",
+            text: "Create an astronaut collectible figure, in a spacesuit, on a moon base, with a round stand and a galaxy background.",
+            category: "Image Generator"
+        },
+        {
+            title: "Pop Star Model (Nano Banana)",
+            text: "Turn any image into a pop star model, performing on a mini stage with microphone, concert lighting, and music-note details.",
+            category: "Image Generator"
+        },
+        {
+            title: "Fantasy Character Toy (Nano Banana)",
+            text: "Make a fantasy character toy, holding a sword or staff, in a magical forest setting with glow effects.",
+            category: "Image Generator"
+        },
+        {
+            title: "Businessperson Desk Figurine (Nano Banana)",
+            text: "Render a businessperson as a desk figurine, in a suit and tie, holding a laptop and with books stacked nearby.",
+            category: "Image Generator"
+        },
+        {
+            title: "Hologram-Model Figure (Nano Banana)",
+            text: "Stylize the photo as a hologram-model figure, with transparent lines, a sci-fi aesthetic, displayed on a tech table.",
+            category: "Image Generator"
+        },
+        {
+            title: "Sports Star Collectible (Nano Banana)",
+            text: "Make a sports star collectible, in a jersey uniform, on a mini stadium, celebration pose, with a trophy accessory.",
+            category: "Image Generator"
+        },
+        {
+            title: "Cartoon-Style Figurine (Nano Banana)",
+            text: "Transform into a cartoon-style figurine, playful colors, oversized shoes, and comic props.",
+            category: "Image Generator"
+        },
+        {
+            title: "Designer Pet Collectible (Nano Banana)",
+            text: "Render a pet as a designer collectible, wearing a bandana or collar, on a pet bed background, in a playful stance.",
+            category: "Image Generator"
+        },
+        {
+            title: "Historic Figure Model (Nano Banana)",
+            text: "Make a historic figure model, with period costume, old map background, and a stand labeled “Limited Edition”.",
+            category: "Image Generator"
+        },
+        {
+            title: "1980s Retro Figurine (Nano Banana)",
+            text: "Create a 3D figurine in a 1980s retro style, wearing large sunglasses, neon jacket, and standing beside a vintage boombox with geometric shapes in the background.",
+            category: "Image Generator"
+        },
+        {
+            title: "Disco-Era Toy (Nano Banana)",
+            text: "Render the character as a disco-era toy, complete with glittery clothes, platform shoes, and a shiny disco ball on the base.",
+            category: "Image Generator"
+        },
+        {
+            title: "Image Description Prompt",
+            text: "Describe the scene in this image in detail, focusing on the colors, objects, and atmosphere.",
+            category: "Image Generator"
+        },
+        {
+            title: "Ad Copy from Video",
+            text: "Generate ad copy based on this video description: [insert video details].",
+            category: "Content Writing"
+        },
+        {
+            title: "Audio Summarization",
+            text: "Summarize the key points from this audio transcript: [paste transcript].",
+            category: "Content Writing"
+        },
+        {
+            title: "Airline Reviews Analysis",
+            text: "Analyze these airline reviews and identify common themes: [list reviews].",
+            category: "Content Writing"
+        },
+        {
+            title: "Advertising Campaign Idea",
+            text: "Create an advertising campaign for a new eco-friendly product.",
+            category: "Content Writing"
+        },
+        {
+            title: "Culinary Dish Classification",
+            text: "Classify this dish based on ingredients: [list ingredients].",
+            category: "Content Writing"
+        },
+        {
+            title: "User Query Assistance",
+            text: "Help refine this user query for better search results: [query].",
+            category: "Content Writing"
+        },
+        {
+            title: "Video QA",
+            text: "Answer questions about this video: What is the main topic? [video link or description].",
+            category: "Video Creation"
+        },
+        {
+            title: "Blog Post Outline",
+            text: "Create an outline for a blog post on AI ethics.",
+            category: "Content Writing"
+        },
+        {
+            title: "Code Generation",
+            text: "Write a Python function to sort a list of numbers.",
+            category: "Content Writing"
+        },
+        {
+            title: "Creative Story",
+            text: "Write a short story about a robot discovering emotions.",
+            category: "Content Writing"
+        },
+        {
+            title: "Text Summary",
+            text: "Summarize this article in 3 sentences: [paste article].",
+            category: "Content Writing"
+        },
+        {
+            title: "Product Description",
+            text: "Generate a compelling product description for a smartwatch.",
+            category: "Content Writing"
+        },
+        {
+            title: "Email Response",
+            text: "Draft a professional email response to a customer complaint.",
+            category: "Content Writing"
+        },
+        {
+            title: "Recipe Suggestion",
+            text: "Suggest a recipe using these ingredients: chicken, rice, vegetables.",
+            category: "Content Writing"
+        },
+        {
+            title: "Poem Generation",
+            text: "Write a poem about the future of AI.",
+            category: "Content Writing"
+        },
+        {
+            title: "Music Composition Prompt",
+            text: "Generate a melody for a calm, ambient track suitable for meditation.",
+            category: "Music Generators"
+        },
+        {
+            title: "Video Scene Creation",
+            text: "Create a script for a 30-second animated promotional video for a tech startup.",
+            category: "Video Creation"
+        },
+        {
+            title: "Language Translation Prompt",
+            text: "Translate the following English text to Spanish: [insert text].",
+            category: "Language Translation"
+        },
+        // Additional Content Writing Prompts
+        {
+            title: "Social Media Post",
+            text: "Write an engaging social media post for a new AI tool launch, including hashtags and call to action.",
+            category: "Content Writing"
+        },
+        {
+            title: "Product Review",
+            text: "Write a 300-word product review for a wireless earbud, highlighting pros, cons, and rating.",
+            category: "Content Writing"
+        },
+        {
+            title: "Newsletter Email",
+            text: "Draft a weekly newsletter email for an AI community, summarizing recent trends and events.",
+            category: "Content Writing"
+        },
+        // Additional Video Creation Prompts
+        {
+            title: "YouTube Script",
+            text: "Write a script for a 5-minute YouTube video explaining AI ethics, with intro, main points, and outro.",
+            category: "Video Creation"
+        },
+        {
+            title: "Ad Video Storyboard",
+            text: "Create a storyboard for a 15-second ad video for a fitness app, including scenes, voiceover, and visuals.",
+            category: "Video Creation"
+        },
+        {
+            title: "Tutorial Video Outline",
+            text: "Outline a video tutorial on using AI for photo editing, including steps, tools, and tips.",
+            category: "Video Creation"
+        },
+        // Additional Music Generators Prompts
+        {
+            title: "Electronic Beat",
+            text: "Generate a 30-second electronic beat with synth bass, hi-hats, and a drop for an EDM track.",
+            category: "Music Generators"
+        },
+        {
+            title: "Acoustic Guitar Melody",
+            text: "Compose a fingerstyle acoustic guitar melody in E minor, 80 BPM, for a relaxing instrumental.",
+            category: "Music Generators"
+        },
+        {
+            title: "Hip-Hop Loop",
+            text: "Create a 16-bar hip-hop loop with drum kicks, snares, and a sampled vinyl crackle.",
+            category: "Music Generators"
+        },
+        // Additional Language Translation Prompts
+        {
+            title: "Business Document Translation",
+            text: "Translate this business proposal from English to French, maintaining formal tone and structure.",
+            category: "Language Translation"
+        },
+        {
+            title: "Poetry Translation",
+            text: "Translate this English poem to Italian, preserving rhyme scheme and imagery.",
+            category: "Language Translation"
+        },
+        {
+            title: "Technical Manual Translation",
+            text: "Translate this software user manual from English to German, ensuring technical accuracy.",
+            category: "Language Translation"
+        },
+        {
+            title: "Collectible Figurine (Nano Banana)",
+            text: "Create a 1/6 scale commercial figurine of the person in the photo with a clear acrylic base and branded box packaging — studio lighting, photorealistic, product shot.",
+            category: "Image Generator",
+        },
+        {
+            title: "Image Description Prompt",
+            text: "Describe the scene in this image in detail, focusing on the colors, objects, and atmosphere.",
+            category: "Image Generator"
+        },
+        {
+            title: "Ad Copy from Video",
+            text: "Generate ad copy based on this video description: [insert video details].",
+            category: "Content Writing"
+        },
+        {
+            title: "Audio Summarization",
+            text: "Summarize the key points from this audio transcript: [paste transcript].",
+            category: "Content Writing"
+        },
+        {
+            title: "Airline Reviews Analysis",
+            text: "Analyze these airline reviews and identify common themes: [list reviews].",
+            category: "Content Writing"
+        },
+        {
+            title: "Advertising Campaign Idea",
+            text: "Create an advertising campaign for a new eco-friendly product.",
+            category: "Content Writing"
+        },
+        {
+            title: "Culinary Dish Classification",
+            text: "Classify this dish based on ingredients: [list ingredients].",
+            category: "Content Writing"
+        },
+        {
+            title: "User Query Assistance",
+            text: "Help refine this user query for better search results: [query].",
+            category: "Content Writing"
+        },
+        {
+            title: "Video QA",
+            text: "Answer questions about this video: What is the main topic? [video link or description].",
+            category: "Video Creation"
+        },
+        {
+            title: "Blog Post Outline",
+            text: "Create an outline for a blog post on AI ethics.",
+            category: "Content Writing"
+        },
+        {
+            title: "Code Generation",
+            text: "Write a Python function to sort a list of numbers.",
+            category: "Content Writing"
+        },
+        {
+            title: "Creative Story",
+            text: "Write a short story about a robot discovering emotions.",
+            category: "Content Writing"
+        },
+        {
+            title: "Text Summary",
+            text: "Summarize this article in 3 sentences: [paste article].",
+            category: "Content Writing"
+        },
+        {
+            title: "Product Description",
+            text: "Generate a compelling product description for a smartwatch.",
+            category: "Content Writing"
+        },
+        {
+            title: "Email Response",
+            text: "Draft a professional email response to a customer complaint.",
+            category: "Content Writing"
+        },
+        {
+            title: "Recipe Suggestion",
+            text: "Suggest a recipe using these ingredients: chicken, rice, vegetables.",
+            category: "Content Writing"
+        },
+        {
+            title: "Poem Generation",
+            text: "Write a poem about the future of AI.",
+            category: "Content Writing"
+        },
+        {
+            title: "Music Composition Prompt",
+            text: "Generate a melody for a calm, ambient track suitable for meditation.",
+            category: "Music Generators"
+        },
+        {
+            title: "Video Scene Creation",
+            text: "Create a script for a 30-second animated promotional video for a tech startup.",
+            category: "Video Creation"
+        },
+        {
+            title: "Language Translation Prompt",
+            text: "Translate the following English text to Spanish: [insert text].",
+            category: "Language Translation"
+        },
+        {
+            title: "Retro Vintage Saree",
+            text: "Create a retro vintage grainy but bright image of the reference picture but draped in a perfect black plain chiffon saree color Pinteresty aesthetic retro saree. It must feel like a 90s movie, and romanticizing a windy environment, solid deep shadows, and contrast drama, creating a mysterious and artistic atmosphere where the lighting is warm with golden tones evoking a rainy sunset or golden hour glow. The girl is slightly tilted in the picture. The background is minimalist and slightly textured the expression on her face is moody, calm yet happy and introspective.",
+            category: "Image Generator"
+        }
+    ];
+
+    const promptsList = document.getElementById('prompts-list');
+    const searchInput = document.getElementById('prompt-search');
+    const categoryFilter = document.getElementById('category-filter');
+    let selectedCategory = 'all';
+
+    function renderPrompts(filteredPrompts) {
+        promptsList.innerHTML = '';
+        filteredPrompts.forEach(prompt => {
+            const item = document.createElement('li');
+            item.classList.add('list-group-item');
+            let content = `
+                <strong>${prompt.title}</strong><br>
+                <pre class="bg-light p-3 rounded-3 border">${prompt.text}</pre>
+                <small>Category: ${prompt.category}</small><br>
+                <button class="btn btn-sm btn-primary mt-2 copy-btn">Copy Prompt</button>
+            `;
+            if (prompt.images) {
+                content += `
+                    <div class="d-flex overflow-x-auto pb-3 prompt-image-gallery">
+                        ${prompt.images.map((img, index) => `
+                            <img src="${img.src}" alt="${img.alt}" class="rounded-3 cursor-pointer" style="max-height: 200px; object-fit: cover; flex: 0 0 auto; width: 250px;" data-bs-toggle="modal" data-bs-target="#imageModal" data-src="${img.src}">
+                        `).join('')}
+                    </div>
+                `;
+            } else if (prompt.image) {
+                content += `<br><img src="${prompt.image}" alt="${prompt.title}" class="prompt-image img-fluid rounded-3" style="max-height: 200px;">`;
+            }
+            item.innerHTML = content;
+            promptsList.appendChild(item);
+
+            // Add copy button event listener
+            item.querySelector('.copy-btn').addEventListener('click', () => {
+                const pre = item.querySelector('pre');
+                const text = pre.innerText.trim();
+                if (navigator.clipboard) {
+                    navigator.clipboard.writeText(text).then(() => {
+                        const btn = item.querySelector('.copy-btn');
+                        const original = btn.innerText;
+                        btn.innerText = 'Copied!';
+                        setTimeout(() => btn.innerText = original, 2000);
+                    }).catch(() => {
+                        alert('Unable to copy. Please copy manually.');
+                    });
+                } else {
+                    const textarea = document.createElement('textarea');
+                    textarea.value = text;
+                    document.body.appendChild(textarea);
+                    textarea.select();
+                    try {
+                        document.execCommand('copy');
+                        const btn = item.querySelector('.copy-btn');
+                        const original = btn.innerText;
+                        btn.innerText = 'Copied!';
+                        setTimeout(() => btn.innerText = original, 2000);
+                    } catch (err) {
+                        alert('Copy failed. Please copy manually.');
+                    }
+                    textarea.remove();
+                }
+            });
+        });
+    }
+
+    function filterPrompts() {
+        const searchTerm = searchInput.value.toLowerCase();
+        let filtered = prompts;
+
+        // Filter by category
+        if (selectedCategory !== 'all') {
+            filtered = filtered.filter(p => p.category === selectedCategory);
+        }
+
+        // Filter by search term
+        if (searchTerm) {
+            filtered = filtered.filter(p =>
+                p.title.toLowerCase().includes(searchTerm) ||
+                p.text.toLowerCase().includes(searchTerm) ||
+                p.category.toLowerCase().includes(searchTerm)
+            );
+        }
+
+        renderPrompts(filtered);
+    }
+
+    // Initial render
+    renderPrompts(prompts);
+
+    // Search input event listener
+    searchInput.addEventListener('input', filterPrompts);
+
+    // Category filter event listener
+    categoryFilter.querySelectorAll('.category-btn').forEach(button => {
+        button.addEventListener('click', () => {
+            categoryFilter.querySelectorAll('.category-btn').forEach(btn => {
+                btn.classList.remove('btn-primary');
+                btn.classList.add('btn-outline-primary');
+            });
+            button.classList.remove('btn-outline-primary');
+            button.classList.add('btn-primary');
+            selectedCategory = button.dataset.category;
+            filterPrompts();
+        });
+    });
+
+    // Image Modal Script
+    document.addEventListener('click', function (e) {
+        const img = e.target.closest('img[data-bs-target="#imageModal"]');
+        if (img) {
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = img.dataset.src;
+        }
+    });
+</script>
+</body>
+</html>

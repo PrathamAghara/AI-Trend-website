@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AI Trends - Nano Banana (2025 Viral Craze) - AI Trends Hub</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <!-- Custom CSS -->
+    <style>
+        /* Remove horizontal scroll */
+        html, body {
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f8f9fa;
+        }
+        .hero {
+            position: relative;
+            background: linear-gradient(135deg, #0d6efd, #6610f2, #00d4ff);
+            color: white;
+            padding: 120px 0;
+            text-align: center;
+            overflow: hidden;
+        }
+        .hero-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 0;
+            opacity: 0.3;
+        }
+        .hero h1 {
+            position: relative;
+            z-index: 1;
+            font-size: 3.5rem;
+            font-weight: bold;
+        }
+        .typing-text::after {
+            content: '|';
+            animation: blink 0.7s infinite;
+        }
+        @keyframes blink {
+            50% { opacity: 0; }
+        }
+        .hero-btn {
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        .hero-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+        }
+        .section-title {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        .card {
+            margin-bottom: 20px;
+            transition: transform 0.3s;
+        }
+        .card:hover {
+            transform: translateY(-10px);
+        }
+        footer {
+            background-color: #343a40;
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        /* Prompt box wrapping */
+        pre {
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin-bottom: 0.5rem;
+        }
+
+        /* Small copy button style */
+        .copy-btn {
+            border-radius: 20px;
+            padding: 0.25rem 0.75rem;
+            font-size: 0.85rem;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+        }
+
+        /* Trend badges layout */
+        .trend-badges { gap: .5rem; display: flex; flex-wrap: wrap; align-items: center; margin-top: .5rem; }
+
+        /* Ensure cards don't overflow on very small screens */
+        .card .card-body { overflow: hidden; }
+
+        .cursor-pointer {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+    <div class="container">
+        <a class="navbar-brand" href="aitools.html">AI Trends Hub</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link " href="aitools.html">Home</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link active" href="Trends.html">Trends</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="category.html">Categories</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="Tools.html">Tools</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link " href="Promts.html">Prompts</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="hero">
+    <canvas id="particleCanvas" class="hero-canvas"></canvas>
+    <div class="container position-relative">
+        <h1 class="display-4"><span class="typing-text">Nano Banana Trend</span></h1>
+        <p class="lead">The viral 2025 AI craze turning photos into 3D collectible figurines—powered by Google Gemini.</p>
+        <a href="#nano-section" class="btn btn-light btn-lg me-2 hero-btn">Explore Trend</a>
+        <a href="https://gemini.google.com/" target="_blank" class="btn btn-outline-light btn-lg hero-btn">Try in Gemini</a>
+    </div>
+</section>
+
+<!-- Nano Banana Trend Section -->
+<section id="nano-section" class="py-5" style="background: #f0f2f5;">
+    <div class="container">
+        <h2 class="section-title mb-5" style="font-weight: 700; color: #343a40;">Nano Banana: The Viral 3D Figurine AI Trend (September 2025)</h2>
+       <!-- How-To Guide -->
+        <div class="row mb-5">
+            <div class="col-md-6">
+                <img src="./img_11.png"  class="rounded-3 cursor-pointer" style="max-height: 180px; object-fit: cover; flex: 0 0 auto; width: 600px;" data-bs-toggle="modal" data-bs-target="#imageModal" data-src="./img_11.png">
+            </div>
+        </div>
+        <div class="row mb-6">
+            <!-- Basic Nano Banana Prompt -->
+                <div class="card shadow-lg rounded-4 border-0 h-100" style="transition: transform 0.3s;">
+                    <div class="card-body">
+                        <h6 class="card-title text-danger fw-bold">Basic 3D Figurine</h6>
+                        <p class="card-text">Core prompt for photorealistic miniatures.</p>
+                        <pre class="bg-light p-3 rounded-3 border">Create a 1/7 scale commercialized figurine of the character in the picture, in a realistic style, in a real environment. The figurine is placed on a computer desk. The figurine has a round transparent acrylic base. The content on the computer screen is a 3D modeling process of this figurine. Next to the computer screen is a toy packaging box, designed in a style reminiscent of high-quality collectible figures, printed with original artwork. The packaging features two-dimensional flat illustrations of the figurine.</pre>
+
+                        <div class="d-flex align-items-center mt-3">
+                            <button class="btn btn-sm btn-outline-primary copy-btn">Copy Prompt</button>
+                            <a href="https://gemini.google.com/" target="_blank" class="btn btn-sm btn-outline-secondary ms-2">Try in Gemini</a>
+                        </div>
+
+                        <!-- Scrollable Image Gallery (moved inside card) -->
+                        <div class="mt-4">
+                            <h6 class="text-center text-danger fw-bold mb-3">Viral Nano Banana Examples</h6>
+                            <div class="d-flex overflow-x-auto pb-3" style="scroll-behavior: smooth; gap: 1rem;">
+                                <img src="./img.png"   alt="Nano Banana Figurine Example 1" class="rounded-3 cursor-pointer" style="max-height: 180px; object-fit: cover; flex: 0 0 auto; width: 220px;" data-bs-toggle="modal" data-bs-target="#imageModal" data-src="./img.png">
+                                <img src="./img_2.png" alt="Nano Banana Figurine Example 2" class="rounded-3 cursor-pointer" style="max-height: 180px; object-fit: cover; flex: 0 0 auto; width: 220px;" data-bs-toggle="modal" data-bs-target="#imageModal" data-src="./img_2.png">
+                                <img src="./img_9.png" alt="Nano Banana Figurine Example 3" class="rounded-3 cursor-pointer" style="max-height: 180px; object-fit: cover; flex: 0 0 auto; width: 220px;" data-bs-toggle="modal" data-bs-target="#imageModal" data-src="./img_9.png">
+                                <img src="./img_1.png" alt="Nano Banana Pet Example" class="rounded-3 cursor-pointer" style="max-height: 180px; object-fit: cover; flex: 0 0 auto; width: 220px;" data-bs-toggle="modal" data-bs-target="#imageModal" data-src="./img_1.png">
+                                <img src="./img_8.png" alt="Nano Banana Pet Example" class="rounded-3 cursor-pointer" style="max-height: 180px; object-fit: cover; flex: 0 0 auto; width: 220px;" data-bs-toggle="modal" data-bs-target="#imageModal" data-src="./img_8.png">
+                                <img src="./img_3.png" alt="Nano Banana Pet Example" class="rounded-3 cursor-pointer" style="max-height: 180px; object-fit: cover; flex: 0 0 auto; width: 220px;" data-bs-toggle="modal" data-bs-target="#imageModal" data-src="./img_3.png">
+                            </div>
+                        </div>
+                        <!-- End Scrollable Image Gallery -->
+                    </div>
+                </div>
+
+            <div class="col-md-4 p-2">
+                <div class="card shadow-lg rounded-4 border-0 h-100" style="transition: transform 0.3s;">
+                    <div class="card-body">
+                        <h6 class="card-title text-success fw-bold">Nano Banana Meme Generation</h6>
+                        <p class="card-text">Create a humorous, pixel-art style image of a tiny banana wearing a futuristic helmet, riding a skateboard through a neon-lit city.</p>
+                        <pre class="bg-light p-3 rounded-3 border">Create a humorous, pixel-art style image of a tiny banana wearing a futuristic helmet, riding a skateboard through a neon-lit city.</pre>
+                        <div class="d-flex align-items-center mt-3">
+                            <button class="btn btn-sm btn-outline-primary copy-btn">Copy Prompt</button>
+                            <a href="https://gemini.google.com/" target="_blank" class="btn btn-sm btn-outline-secondary ms-2">Try in Gemini</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 p-2">
+                <div class="card shadow-lg rounded-4 border-0 h-100" style="transition: transform 0.3s;">
+                    <div class="card-body">
+                        <h6 class="card-title text-warning fw-bold">Viral Video Script</h6>
+                        <p class="card-text">Write a 30-second video script for a short-form video platform, showcasing the Nano Banana trend with a catchy voice-over and quick cuts. The tone should be upbeat and quirky.</p>
+                        <pre class="bg-light p-3 rounded-3 border">Write a 30-second video script for a short-form video platform, showcasing the Nano Banana trend with a catchy voice-over and quick cuts. The tone should be upbeat and quirky.</pre>
+                        <div class="d-flex align-items-center mt-3">
+                            <button class="btn btn-sm btn-outline-primary copy-btn">Copy Prompt</button>
+                            <a href="https://gemini.google.com/" target="_blank" class="btn btn-sm btn-outline-secondary ms-2">Try in Gemini</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 p-2">
+                <div class="card shadow-lg rounded-4 border-0 h-100" style="transition: transform 0.3s;">
+                    <div class="card-body">
+                        <h6 class="card-title text-info fw-bold">Advanced Prompt Engineering</h6>
+                        <p class="card-text">Generate a detailed prompt that combines "Nano Banana" with elements of a different style, such as "steampunk" or "cyberpunk," to create a unique piece of concept art.</p>
+                        <pre class="bg-light p-3 rounded-3 border">Generate a detailed prompt that combines "Nano Banana" with elements of a different style, such as "steampunk" or "cyberpunk," to create a unique piece of concept art.</pre>
+                        <div class="d-flex align-items-center mt-3">
+                            <button class="btn btn-sm btn-outline-primary copy-btn">Copy Prompt</button>
+                            <a href="https://gemini.google.com/" target="_blank" class="btn btn-sm btn-outline-secondary ms-2">Try in Gemini</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- 16-Bit Game Character -->
+            <div class="col-md-4 p-2">
+                <div class="card shadow-lg rounded-4 border-0 h-100" style="transition: transform 0.3s;">
+                    <div class="card-body">
+                        <h6 class="card-title text-warning fw-bold">16-Bit Video Game Style</h6>
+                        <p class="card-text">Retro gaming twist—viral on X.</p>
+                        <pre class="bg-light p-3 rounded-3 border">First, ask me to upload an image of myself. Then reimagine me as a 16-Bit Video Game character and put me in a 2D 16-bit platform video game — pixel art, vibrant colors, action pose.</pre>
+                        <div class="d-flex align-items-center mt-3">
+                            <button class="btn btn-sm btn-outline-primary copy-btn">Copy Prompt</button>
+                            <a href="https://gemini.google.com/" target="_blank" class="btn btn-sm btn-outline-secondary ms-2">Try in Gemini</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Vintage Saree Edit -->
+            <div class="col-md-4 p-2">
+                <div class="card shadow-lg rounded-4 border-0 h-100" style="transition: transform 0.3s;">
+                    <div class="card-body">
+                        <h6 class="card-title text-primary fw-bold">Vintage Saree (90s Bollywood)</h6>
+                        <p class="card-text">Nostalgic fashion spin-off, huge on Instagram.</p>
+                        <pre class="bg-light p-3 rounded-3 border">Transform this photo into a 90s Bollywood poster: me in a flowing chiffon saree, dramatic pose, retro colors, cinematic lighting — vintage film style, high detail.</pre>
+                        <div class="d-flex align-items-center mt-3">
+                            <button class="btn btn-sm btn-outline-primary copy-btn">Copy Prompt</button>
+                            <a href="https://gemini.google.com/" target="_blank" class="btn btn-sm btn-outline-secondary ms-2">Try in Gemini</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Pet Figurine -->
+            <div class="col p-2">
+                <div class="card shadow-lg rounded-4 border-0 h-100" style="transition: transform 0.3s;">
+                    <div class="card-body">
+                        <h6 class="card-title text-success fw-bold">Pet Collectible</h6>
+                        <p class="card-text">Fun for animal lovers—turn Fido into a mini toy.</p>
+                        <pre class="bg-light p-3 rounded-3 border">Reimagine this pet photo as a cute 3D figurine on a clear base, with playful packaging — glossy, detailed, studio shot, adorable expression.</pre>
+                        <div class="d-flex align-items-center mt-3">
+                            <button class="btn btn-sm btn-outline-primary copy-btn">Copy Prompt</button>
+                            <a href="https://gemini.google.com/" target="_blank" class="btn btn-sm btn-outline-secondary ms-2">Try in Gemini</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Image Modal -->
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="imageModalLabel">Nano Banana Figurine</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body text-center">
+                <img id="modalImage" src="" alt="Enlarged Nano Banana Figurine" class="img-fluid rounded-3" style="max-height: 60vh; width: auto;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Other Trends Link -->
+<section class="py-3 bg-light">
+    <div class="container text-center">
+        <a href="OtherTrends.html" class="btn btn-outline-primary">Explore Other Instagram AI Trends</a>
+    </div>
+</section>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <p>&copy; 2025 AI Trends Hub. All rights reserved.</p>
+    </div>
+</footer>
+
+<!-- Bootstrap 5 JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+        crossorigin="anonymous"></script>
+
+<!-- Custom JavaScript -->
+<script>
+    // Typing Animation
+    const texts = ["Nano Banana", "3D AI Figurines", "Viral 2025 Trend"];
+    let index = 0, charIndex = 0, isDeleting = false;
+    const typingElement = document.querySelector(".typing-text");
+    function type() {
+        const currentText = texts[index];
+        if (isDeleting) {
+            typingElement.textContent = currentText.substring(0, charIndex--);
+            if (charIndex < 0) {
+                isDeleting = false;
+                index = (index + 1) % texts.length;
+            }
+        } else {
+            typingElement.textContent = currentText.substring(0, charIndex++);
+            if (charIndex > currentText.length) {
+                isDeleting = true;
+                setTimeout(type, 1000);
+                return;
+            }
+        }
+        setTimeout(type, isDeleting ? 50 : 100);
+    }
+    document.addEventListener("DOMContentLoaded", type);
+
+    // Particle Background
+    const canvas = document.getElementById("particleCanvas");
+    const ctx = canvas.getContext("2d");
+    function resizeCanvas() {
+        canvas.width = window.innerWidth;
+        canvas.height = canvas.parentElement.offsetHeight || 360;
+    }
+    resizeCanvas();
+    window.addEventListener('resize', resizeCanvas);
+
+    const particles = [];
+    for (let i = 0; i < 50; i++) {
+        particles.push({
+            x: Math.random() * (canvas.width || 1000),
+            y: Math.random() * (canvas.height || 400),
+            radius: Math.random() * 3 + 1,
+            vx: Math.random() * 2 - 1,
+            vy: Math.random() * 2 - 1
+        });
+    }
+    function animateParticles() {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        particles.forEach(p => {
+            p.x += p.vx; p.y += p.vy;
+            if (p.x < 0 || p.x > canvas.width) p.vx *= -1;
+            if (p.y < 0 || p.y > canvas.height) p.vy *= -1;
+            ctx.beginPath();
+            ctx.arc(p.x, p.y, p.radius, 0, Math.PI * 2);
+            ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+            ctx.fill();
+        });
+        requestAnimationFrame(animateParticles);
+    }
+    animateParticles();
+
+    // Copy Prompt Buttons (Dynamic Handler)
+    document.addEventListener('click', function (e) {
+        const btn = e.target.closest('.copy-btn');
+        if (!btn) return;
+        let text;
+        const targetId = btn.getAttribute('data-target');
+        if (targetId) {
+            const pre = document.getElementById(targetId);
+            if (pre) text = pre.innerText.trim();
+        } else {
+            const cardBody = btn.closest('.card-body');
+            if (cardBody) {
+                const pre = cardBody.querySelector('pre');
+                if (pre) text = pre.innerText.trim();
+            }
+        }
+        if (!text) return alert('No prompt found.');
+        if (navigator.clipboard) {
+            navigator.clipboard.writeText(text).then(() => {
+                const original = btn.innerText;
+                btn.innerText = 'Copied!';
+                setTimeout(() => btn.innerText = original, 2000);
+            });
+        } else {
+            const textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            btn.innerText = 'Copied!';
+            setTimeout(() => btn.innerText = 'Copy Prompt', 2000);
+            textarea.remove();
+        }
+    });
+
+    // Image Modal
+    document.addEventListener('click', function (e) {
+        const img = e.target.closest('img[data-bs-target="#imageModal"]');
+        if (img) {
+            document.getElementById('modalImage').src = img.dataset.src;
+        }
+    });
+</script>
+</body>
+</html>
